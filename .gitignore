@@ -1,0 +1,6 @@
+#.gitignore
+
+env.development
+env.production
+errors.log
+node_modules/
