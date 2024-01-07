@@ -77,8 +77,8 @@ app.use('/logger', loggerRouter);
 console.log(config.mongoUrl);
 app.use(session({
     store: MongoStore.create({
-        //mongoUrl: config.mongoUrl,
-        mongoUrl: 'mongodb+srv://nodejsBack:Rialzomo06.@clusternodejsback.nhvefdy.mongodb.net/ecommerce',
+        mongoUrl: config.mongoUrl,
+        //mongoUrl: 'mongodb+srv://nodejsBack:Rialzomo06.@clusternodejsback.nhvefdy.mongodb.net/ecommerce',
         ttl: 3600
     }),
     secret: "CoderSecret",
@@ -95,8 +95,8 @@ app.use('/api/sessions', sessionsRouter);
 app.use('/mocks', mocksRouter);
 app.use(errorHandler);
 
-//const server = app.listen(config.port, ()=> {
-    const server = app.listen(8080, ()=> {
+const server = app.listen(config.port, ()=> {
+    //const server = app.listen(8080, ()=> {
     console.log('Server ON')
 });
 
