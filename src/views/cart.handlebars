@@ -1,0 +1,35 @@
+<div>
+    <form id="logoutForm">
+        <button type="submit">Logout</button>
+    </form>
+</div>
+<div>
+    <h1>Carrito</h1>
+    <div>
+        <form id="volverComprar">
+            <button type="submit">Volver a Comprar</button>
+        </form>
+    </div>
+    <div>
+        <form id="comprar">
+            <input id="cartId" type="string" value={{id}} style="display:none">
+            <input id="token" type="string" value={{token}} style="display:none">
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    </div>
+            <div>
+                    <p>Id: {{id}}</p>
+                    <p>Productos:</p>
+                    {{#each products}}
+                            <ul>
+                                <li>Producto Id: {{this.id}}</li>
+                                <li>Title: {{this.title}}</li>
+                                <li>Description: {{this.description}}</li>
+                                <li>Price: {{this.price}}</li>
+                                <li>Cantidad: {{this.quantity}}</li>
+                            </ul>
+                        {{/each}}
+                    <br>
+                    </div>
+</div>
+<script src="/js/carts.js"></script>

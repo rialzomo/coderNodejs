@@ -1,0 +1,57 @@
+<div>
+     <div>
+        <p>Bienvenido: {{name}}</p>
+        <p>Correo: {{email}}</p>
+         {{#if flagRol}}
+            <p>ADMINISTRADOR</p>
+        {{/if}}
+    </div>
+    <div>
+        <form id="logoutForm">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <h3>Carrito:</h3>
+    <div>
+        <form id="goToCart">
+            <input id="cartId" type="string" value={{cartId}} disabled="false">
+            <input id="token" type="string" value={{token}} style="display:none">
+            <button type="submit">Ir al Carrito</button>
+        </form>
+    </div>
+        
+
+    <h1>Productos</h1>
+        
+        {{#each payload}}
+            <div>
+                <p>Title: {{this.title}}</p>
+                <p>Description: {{this.description}}</p>
+                <p>Code: {{this.code}}</p>
+                <p>Price: {{this.price}}</p>
+                <p>Status: {{this.status}}</p>
+                <p>Category: {{this.category}}</p>
+                <p>Thumbnail: {{this.thumbnail}}</p>
+                <p>Stock: {{this.stock}}</p>
+                <p>Id: {{this._id}}</p>
+                <br>
+                    <div>
+                        <form id="addCartForm">
+                            <input id="productId" type="string" value={{this._id}} style="display:none">
+                            <button type="submit">Agregar a Carrito</button>
+                        </form>
+                    </div>
+            </div>
+            
+        {{/each}}
+        {{#if hasPrevPage}}
+        <a href="/views/products?page={{prevPage}}"><button>Anterior</button></a>
+        {{/if}}
+
+        {{#if hasNextPage}}
+        <a href="/views/products?page={{nextPage}}"><button>Siguiente</button></a>
+        {{/if}}
+</div>
+<script src="/js/index.js"></script>
+<script src="/js/products.js"></script>

@@ -1,0 +1,23 @@
+<div>
+    <form id="logoutForm">
+    <button type="submit">Logout</button>
+    </form>
+</div>
+<div>
+    <h1>Productos</h1>
+        {{#each products}}
+            <div>
+                <p>Title: {{this.title}}</p>
+                <p>Description: {{this.description}}</p>
+                <p>Code: {{this.code}}</p>
+                <p>Price: {{this.price}}</p>
+                <p>Status: {{this.status}}</p>
+                <p>Category: {{this.category}}</p>
+                <p>Thumbnail: {{this.thumbnail}}</p>
+                <p>Stock: {{this.stock}}</p>
+                <p>Id: {{this._id}}</p>
+                <br>
+            </div>
+        {{/each}}
+</div>
+<script src="/js/logout.js"></script>

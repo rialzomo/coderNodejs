@@ -1,0 +1,32 @@
+<div>
+    <div>
+        <form id="logoutForm">
+        <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <h1>Usuarios</h1>
+
+            <div>
+                <p>Nombre: {{firts_name}}</p>
+                <p>Apellido: {{last_name}}</p>
+                <p>email: {{email}}</p>
+                <p>rol: {{rol}}</p>
+                <br>
+                    <div>
+                        <form id="rolForm">
+                            <input id="userId" type="string" value={{_id}} style="display:none">
+                            <input id="token" type="string" value={{token}} style="display:none">
+                            <button type="submit">Cambiar Rol</button>
+                        </form>
+                    </div>
+                    <div>
+                        <form id="deleteUserForm">
+                            <input id="userId" type="string" value={{_id}} style="display:none">
+                            <input id="token" type="string" value={{token}} style="display:none">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </div>
+            </div>
+</div>
+<script src="/js/users.js"></script>

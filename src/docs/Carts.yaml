@@ -1,0 +1,200 @@
+paths:
+    /api/carts/:
+      get:
+        summary: Obtiene todos los carritos
+        tags:
+          - Carts
+        responses:
+          "200":
+            description: Los carritos fueron obtenidos satisfactoriamente
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#components/schemas/Cart'
+          "500":
+            description: Error interno del servidor
+      post:
+        summary: Crea un carrito
+        tags:
+          - Carts
+        requestBody:
+                  required: false
+                  content:
+                    application/json:
+        responses:
+          "200":
+            description: Success
+          "500":
+            description: Error interno del servidor
+    /api/carts/{:cid}:
+      get:
+        summary: Obtiene un solo carrito apartir de su ID
+        tags:
+          - Carts
+        parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito a solicitar
+          schema:
+            $type: String
+        responses:
+          "200":
+            description: Carrito encontrado
+            content:
+              application/json:
+                schema:
+                  $ref: '#components/schemas/Cart'
+          "500":
+            description: Error interno del servidor
+      put:
+        summary: Actualiza un carrito a partir de su ID
+        tags:
+          - Carts
+        parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito a actualizar
+          schema:
+            $type: String
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#components/requestBodies/updateCarts'
+      delete:
+            summary: Elimina un carrito
+            tags:
+              - Carts
+            parameters:
+            - name: cid
+              in: path
+              requiered: true
+              description: ID del carrito a eliminar
+            responses:
+              "200":
+                description: Success
+              "500":
+                description: Error interno del servidor
+    /api/carts/{:cid}/product/{:pid}:
+          put:
+            summary: Actualiza la cantidad de un producto por medio del ID de producto y del carrito
+            tags:
+              - Carts
+            parameters:
+            - name: cid
+              in: path
+              requiered: true
+              description: ID del carrito a actualizar
+            - name: pid
+              in: path
+              requiered: true
+              description: ID del producto a actualizar
+              schema:
+                $type: String
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    $ref: '#components/requestBodies/updateCarts'
+            responses:
+              "200":
+                description: Success
+              "500":
+                description: Error interno del servidor
+          delete:
+            summary: Elimina un producto del carrito
+            tags:
+              - Carts
+            parameters:
+            - name: cid
+              in: path
+              requiered: true
+              description: ID del carrito a actualizar
+            - name: pid
+              in: path
+              requiered: true
+              description: ID del producto a eliminar
+            responses:
+              "200":
+                description: Success
+              "500":
+                description: Error interno del servidor
+          post:
+            summary: Agrega un producto a un carrito
+            tags:
+              - Carts
+            parameters:
+            - name: cid
+              in: path
+              requiered: true
+              description: ID del carrito a actualizar
+            - name: pid
+              in: path
+              requiered: true
+              description: ID del producto a agregar
+            requestBody:
+                      required: false
+                      content:
+                        application/json:
+            responses:
+              "200":
+                description: Success
+              "500":
+                description: Error interno del servidor
+    /api/carts/{:cid}/purcharse:
+          post:
+            summary: Compra los productos del carrito
+            tags:
+              - Carts
+            requestBody:
+                required: false
+                content:
+                  application/json:
+            responses:
+              "200":
+                description: Success
+              "500":
+                description: Error interno del servidor
+
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID autogenerado de mongo
+        products:
+          type: Array
+          description: Productos asociados al carrito
+      example:
+        _id: ObjectId("655d3d21ab12e2fba6c3be5e")
+        products: []
+  requestBodies:
+    updateCarts:
+      type: ObjectId
+      properties:
+        products:
+          type: Array
+          description: Productos asociados
+      example:
+        products: [
+            {
+                "quantity": 1,
+                "_id": "650c4644afa4e6f9a8dff7de"
+            }
+        ]
+    createCart:
+      type: ObjectId
+      properties:
+        products:
+          type: Array
+          description: Productos asociados
+      example:
+        products: []
